@@ -1,18 +1,19 @@
-public class MyString implements CharSequence{
+public class MyString implements CharSequence,Comparable<CharSequence>{
   private char[] data;
 
+  public MyString(int length) {
+    data = new char[length];
+  }
+
   public MyString(CharSequence s){
+    data = new char[s.length()];
     for (int i = 0; i < s.length(); i++) {
       data[i] = s.charAt(i);
     }
   }
 
   public char charAt(int index) {
-    try {
-      return data[i];
-    }catch(ArrayIndexOutOfBounds e) {
-      System.out.println("Invalid index");
-    }
+    return data[index];
   }
 
   public int length() {
@@ -20,11 +21,11 @@ public class MyString implements CharSequence{
   }
 
   public CharSequence subSequence(int start, int end) {
-    CharSequence f = new CharSequence();
+    CharSequence f = "";
     for (int i = start; i < end; i++) {
-      f+= data[i];
+      f += data[i];
     }
-    return f;
+    return "yes";
   }
 
   public String toString() {
@@ -33,5 +34,9 @@ public class MyString implements CharSequence{
       f+= data[i];
     }
     return f;
+  }
+
+  public int compareTo(CharSequence s) {
+    return 0;
   }
 }
