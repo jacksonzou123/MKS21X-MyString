@@ -43,14 +43,14 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
   public int compareTo(CharSequence s) {
     for (int i = 0; i < this.length(); i++) {
       if (i > s.length()) {
-        return charAt(i);
+        return this.length()-s.length();
       }
       if (charAt(i) != s.charAt(i)) {
         return charAt(i) - s.charAt(i);
       }
     }
     if (s.length() > this.length()) {
-      return s.charAt(this.length());
+      return s.length()-this.length();
     }
     return 0;
   }
