@@ -42,7 +42,7 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
 
   public int compareTo(CharSequence s) {
     for (int i = 0; i < this.length(); i++) {
-      if (i > s.length()) {
+      if (i > s.length() - 1) {
         return this.length()-s.length();
       }
       if (charAt(i) != s.charAt(i)) {
@@ -50,7 +50,7 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
       }
     }
     if (s.length() > this.length()) {
-      return s.length()-this.length();
+      return -1 * s.length() + this.length();
     }
     return 0;
   }
