@@ -2,7 +2,11 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
   private char[] data;
 
   public MyString(int length) {
-    data = new char[length];
+    try {
+      data = new char[length];
+    }catch(NegativeArraySizeException e) {
+      System.out.println("Invalid length for MyString");
+    }
   }
 
   public MyString(CharSequence s){
@@ -13,7 +17,7 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
   }
 
   public char charAt(int index) {
-    return data[index];
+      return data[index];
   }
 
   public int length() {
@@ -21,22 +25,33 @@ public class MyString implements CharSequence,Comparable<CharSequence>{
   }
 
   public CharSequence subSequence(int start, int end) {
-    CharSequence f = "";
+    String f = "";
     for (int i = start; i < end; i++) {
-      f += data[i];
+      f += charAt(i);
     }
-    return "yes";
+    return f;
   }
 
   public String toString() {
     String f = "";
     for (int i = 0; i < data.length; i++) {
-      f+= data[i];
+      f+= charAt(i);
     }
     return f;
   }
 
   public int compareTo(CharSequence s) {
+    for (int i = 0; i < this.length(); i++) {
+      if (i > s.length()) {
+        return charAt(i);
+      }
+      if (charAt(i) != s.charAt(i)) {
+        return charAt(i) - s.charAt(i);
+      }
+    }
+    if (s.length() > this.length()) {
+      return s.charAt(this.length());
+    }
     return 0;
   }
 }
